@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="newLiveDate">
+        <form action="../liveDates.db">
+            <input type="date">
+            <input type="text">
+            <input type="text">
+            <input type="url">
+        </form>
+    </div>
+<div>
+    <table>
+        <tr>
+            <thead>
+                <td>Date</td>
+                <td>Venue</td>
+                <td>Address</td>
+                <td>Ticket Link</td>
+            </thead>
+        </tr>
+
+        <tr class="liveDates">
+
+        </tr>
+
+    </table>
+</div>
+
+</body>
+<script>
+    const fetchData = () => {
+    console.log('Looking for data');
+    fetch("../liveDates.db")
+        .then(response => {
+            if(!response.ok){ throw Error ('ERROR') }
+
+            return response.json();
+        })
+        .then(data =>{
+            const content = mapToLiveSection(data);
+            console.log({data, content}
+                );
+            document
+            .querySelector(
+                '.liveDates'
+            )
+            .innerHTML = content;
+        }).catch(error => {
+            console.log(error)
+        })
+};
+
+fetchData();
+const mapToLiveSection = data =>{
+    return data  
+.map(content =>{
+    return ` 
+
+        <tr>
+                ${ content.date ? `<td>${content.date}</td>` : ''}
+                ${ content.venue ? `<td>${content.venue}</td>`: ''}
+                ${ content.address ? `<td>${content.address}</td>`: ''}
+                ${ content.ticketLink ? `<td>${content.ticketLink}</td>`: ''}
+        </tr>
+
+
+                `})
+.join(" "); // removing the comma join
+};
+</script>
+</html>

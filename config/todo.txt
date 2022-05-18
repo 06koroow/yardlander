@@ -1,0 +1,9 @@
+
+- Instagram and Spotify API Pulls for Media Section (do once live)
+- JS function to remove gigs in the past
+- make form to input gig data into the db
+- press sect
+- Artist Portal
+- News Sect
+- fetch (POST) email address into DB
+- YL Emails: Bookings, Press, Management, 
